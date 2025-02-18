@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TrafficLightImport } from './routes/traffic-light'
+import { Route as StopwatchImport } from './routes/stopwatch'
 import { Route as QuoteImport } from './routes/quote'
 import { Route as DiceImport } from './routes/dice'
 import { Route as IndexImport } from './routes/index'
@@ -21,6 +22,12 @@ import { Route as IndexImport } from './routes/index'
 const TrafficLightRoute = TrafficLightImport.update({
   id: '/traffic-light',
   path: '/traffic-light',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const StopwatchRoute = StopwatchImport.update({
+  id: '/stopwatch',
+  path: '/stopwatch',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -67,6 +74,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuoteImport
       parentRoute: typeof rootRoute
     }
+    '/stopwatch': {
+      id: '/stopwatch'
+      path: '/stopwatch'
+      fullPath: '/stopwatch'
+      preLoaderRoute: typeof StopwatchImport
+      parentRoute: typeof rootRoute
+    }
     '/traffic-light': {
       id: '/traffic-light'
       path: '/traffic-light'
@@ -83,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
   '/quote': typeof QuoteRoute
+  '/stopwatch': typeof StopwatchRoute
   '/traffic-light': typeof TrafficLightRoute
 }
 
@@ -90,6 +105,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
   '/quote': typeof QuoteRoute
+  '/stopwatch': typeof StopwatchRoute
   '/traffic-light': typeof TrafficLightRoute
 }
 
@@ -98,15 +114,16 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
   '/quote': typeof QuoteRoute
+  '/stopwatch': typeof StopwatchRoute
   '/traffic-light': typeof TrafficLightRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dice' | '/quote' | '/traffic-light'
+  fullPaths: '/' | '/dice' | '/quote' | '/stopwatch' | '/traffic-light'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dice' | '/quote' | '/traffic-light'
-  id: '__root__' | '/' | '/dice' | '/quote' | '/traffic-light'
+  to: '/' | '/dice' | '/quote' | '/stopwatch' | '/traffic-light'
+  id: '__root__' | '/' | '/dice' | '/quote' | '/stopwatch' | '/traffic-light'
   fileRoutesById: FileRoutesById
 }
 
@@ -114,6 +131,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiceRoute: typeof DiceRoute
   QuoteRoute: typeof QuoteRoute
+  StopwatchRoute: typeof StopwatchRoute
   TrafficLightRoute: typeof TrafficLightRoute
 }
 
@@ -121,6 +139,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiceRoute: DiceRoute,
   QuoteRoute: QuoteRoute,
+  StopwatchRoute: StopwatchRoute,
   TrafficLightRoute: TrafficLightRoute,
 }
 
@@ -137,6 +156,7 @@ export const routeTree = rootRoute
         "/",
         "/dice",
         "/quote",
+        "/stopwatch",
         "/traffic-light"
       ]
     },
@@ -148,6 +168,9 @@ export const routeTree = rootRoute
     },
     "/quote": {
       "filePath": "quote.tsx"
+    },
+    "/stopwatch": {
+      "filePath": "stopwatch.tsx"
     },
     "/traffic-light": {
       "filePath": "traffic-light.tsx"
