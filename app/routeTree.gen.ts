@@ -11,10 +11,17 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TrafficLightImport } from './routes/traffic-light'
 import { Route as DiceImport } from './routes/dice'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const TrafficLightRoute = TrafficLightImport.update({
+  id: '/traffic-light',
+  path: '/traffic-light',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const DiceRoute = DiceImport.update({
   id: '/dice',
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiceImport
       parentRoute: typeof rootRoute
     }
+    '/traffic-light': {
+      id: '/traffic-light'
+      path: '/traffic-light'
+      fullPath: '/traffic-light'
+      preLoaderRoute: typeof TrafficLightImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/traffic-light': typeof TrafficLightRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/traffic-light': typeof TrafficLightRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/traffic-light': typeof TrafficLightRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dice'
+  fullPaths: '/' | '/dice' | '/traffic-light'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dice'
-  id: '__root__' | '/' | '/dice'
+  to: '/' | '/dice' | '/traffic-light'
+  id: '__root__' | '/' | '/dice' | '/traffic-light'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiceRoute: typeof DiceRoute
+  TrafficLightRoute: typeof TrafficLightRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiceRoute: DiceRoute,
+  TrafficLightRoute: TrafficLightRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +116,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/dice"
+        "/dice",
+        "/traffic-light"
       ]
     },
     "/": {
@@ -105,6 +125,9 @@ export const routeTree = rootRoute
     },
     "/dice": {
       "filePath": "dice.tsx"
+    },
+    "/traffic-light": {
+      "filePath": "traffic-light.tsx"
     }
   }
 }
