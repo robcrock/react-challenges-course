@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TrafficLightImport } from './routes/traffic-light'
+import { Route as QuoteImport } from './routes/quote'
 import { Route as DiceImport } from './routes/dice'
 import { Route as IndexImport } from './routes/index'
 
@@ -20,6 +21,12 @@ import { Route as IndexImport } from './routes/index'
 const TrafficLightRoute = TrafficLightImport.update({
   id: '/traffic-light',
   path: '/traffic-light',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const QuoteRoute = QuoteImport.update({
+  id: '/quote',
+  path: '/quote',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,6 +60,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiceImport
       parentRoute: typeof rootRoute
     }
+    '/quote': {
+      id: '/quote'
+      path: '/quote'
+      fullPath: '/quote'
+      preLoaderRoute: typeof QuoteImport
+      parentRoute: typeof rootRoute
+    }
     '/traffic-light': {
       id: '/traffic-light'
       path: '/traffic-light'
@@ -68,12 +82,14 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/quote': typeof QuoteRoute
   '/traffic-light': typeof TrafficLightRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/quote': typeof QuoteRoute
   '/traffic-light': typeof TrafficLightRoute
 }
 
@@ -81,27 +97,30 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/quote': typeof QuoteRoute
   '/traffic-light': typeof TrafficLightRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dice' | '/traffic-light'
+  fullPaths: '/' | '/dice' | '/quote' | '/traffic-light'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dice' | '/traffic-light'
-  id: '__root__' | '/' | '/dice' | '/traffic-light'
+  to: '/' | '/dice' | '/quote' | '/traffic-light'
+  id: '__root__' | '/' | '/dice' | '/quote' | '/traffic-light'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiceRoute: typeof DiceRoute
+  QuoteRoute: typeof QuoteRoute
   TrafficLightRoute: typeof TrafficLightRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiceRoute: DiceRoute,
+  QuoteRoute: QuoteRoute,
   TrafficLightRoute: TrafficLightRoute,
 }
 
@@ -117,6 +136,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/dice",
+        "/quote",
         "/traffic-light"
       ]
     },
@@ -125,6 +145,9 @@ export const routeTree = rootRoute
     },
     "/dice": {
       "filePath": "dice.tsx"
+    },
+    "/quote": {
+      "filePath": "quote.tsx"
     },
     "/traffic-light": {
       "filePath": "traffic-light.tsx"
