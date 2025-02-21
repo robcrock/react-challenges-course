@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TrafficLightImport } from './routes/traffic-light'
+import { Route as TicTacToeImport } from './routes/tic-tac-toe'
 import { Route as StopwatchImport } from './routes/stopwatch'
 import { Route as RockPaperScissorsImport } from './routes/rock-paper-scissors'
 import { Route as QuoteImport } from './routes/quote'
@@ -24,6 +25,12 @@ import { Route as IndexImport } from './routes/index'
 const TrafficLightRoute = TrafficLightImport.update({
   id: '/traffic-light',
   path: '/traffic-light',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TicTacToeRoute = TicTacToeImport.update({
+  id: '/tic-tac-toe',
+  path: '/tic-tac-toe',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -109,6 +116,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StopwatchImport
       parentRoute: typeof rootRoute
     }
+    '/tic-tac-toe': {
+      id: '/tic-tac-toe'
+      path: '/tic-tac-toe'
+      fullPath: '/tic-tac-toe'
+      preLoaderRoute: typeof TicTacToeImport
+      parentRoute: typeof rootRoute
+    }
     '/traffic-light': {
       id: '/traffic-light'
       path: '/traffic-light'
@@ -128,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/stopwatch': typeof StopwatchRoute
+  '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
 }
 
@@ -138,6 +153,7 @@ export interface FileRoutesByTo {
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/stopwatch': typeof StopwatchRoute
+  '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
 }
 
@@ -149,6 +165,7 @@ export interface FileRoutesById {
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/stopwatch': typeof StopwatchRoute
+  '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
 }
 
@@ -161,6 +178,7 @@ export interface FileRouteTypes {
     | '/quote'
     | '/rock-paper-scissors'
     | '/stopwatch'
+    | '/tic-tac-toe'
     | '/traffic-light'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -170,6 +188,7 @@ export interface FileRouteTypes {
     | '/quote'
     | '/rock-paper-scissors'
     | '/stopwatch'
+    | '/tic-tac-toe'
     | '/traffic-light'
   id:
     | '__root__'
@@ -179,6 +198,7 @@ export interface FileRouteTypes {
     | '/quote'
     | '/rock-paper-scissors'
     | '/stopwatch'
+    | '/tic-tac-toe'
     | '/traffic-light'
   fileRoutesById: FileRoutesById
 }
@@ -190,6 +210,7 @@ export interface RootRouteChildren {
   QuoteRoute: typeof QuoteRoute
   RockPaperScissorsRoute: typeof RockPaperScissorsRoute
   StopwatchRoute: typeof StopwatchRoute
+  TicTacToeRoute: typeof TicTacToeRoute
   TrafficLightRoute: typeof TrafficLightRoute
 }
 
@@ -200,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuoteRoute: QuoteRoute,
   RockPaperScissorsRoute: RockPaperScissorsRoute,
   StopwatchRoute: StopwatchRoute,
+  TicTacToeRoute: TicTacToeRoute,
   TrafficLightRoute: TrafficLightRoute,
 }
 
@@ -219,6 +241,7 @@ export const routeTree = rootRoute
         "/quote",
         "/rock-paper-scissors",
         "/stopwatch",
+        "/tic-tac-toe",
         "/traffic-light"
       ]
     },
@@ -239,6 +262,9 @@ export const routeTree = rootRoute
     },
     "/stopwatch": {
       "filePath": "stopwatch.tsx"
+    },
+    "/tic-tac-toe": {
+      "filePath": "tic-tac-toe.tsx"
     },
     "/traffic-light": {
       "filePath": "traffic-light.tsx"
