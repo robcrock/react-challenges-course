@@ -13,7 +13,9 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as TrafficLightImport } from './routes/traffic-light'
 import { Route as StopwatchImport } from './routes/stopwatch'
+import { Route as RockPaperScissorsImport } from './routes/rock-paper-scissors'
 import { Route as QuoteImport } from './routes/quote'
+import { Route as GradientImport } from './routes/gradient'
 import { Route as DiceImport } from './routes/dice'
 import { Route as IndexImport } from './routes/index'
 
@@ -31,9 +33,21 @@ const StopwatchRoute = StopwatchImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const RockPaperScissorsRoute = RockPaperScissorsImport.update({
+  id: '/rock-paper-scissors',
+  path: '/rock-paper-scissors',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const QuoteRoute = QuoteImport.update({
   id: '/quote',
   path: '/quote',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GradientRoute = GradientImport.update({
+  id: '/gradient',
+  path: '/gradient',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -67,11 +81,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiceImport
       parentRoute: typeof rootRoute
     }
+    '/gradient': {
+      id: '/gradient'
+      path: '/gradient'
+      fullPath: '/gradient'
+      preLoaderRoute: typeof GradientImport
+      parentRoute: typeof rootRoute
+    }
     '/quote': {
       id: '/quote'
       path: '/quote'
       fullPath: '/quote'
       preLoaderRoute: typeof QuoteImport
+      parentRoute: typeof rootRoute
+    }
+    '/rock-paper-scissors': {
+      id: '/rock-paper-scissors'
+      path: '/rock-paper-scissors'
+      fullPath: '/rock-paper-scissors'
+      preLoaderRoute: typeof RockPaperScissorsImport
       parentRoute: typeof rootRoute
     }
     '/stopwatch': {
@@ -96,7 +124,9 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/gradient': typeof GradientRoute
   '/quote': typeof QuoteRoute
+  '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/stopwatch': typeof StopwatchRoute
   '/traffic-light': typeof TrafficLightRoute
 }
@@ -104,7 +134,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/gradient': typeof GradientRoute
   '/quote': typeof QuoteRoute
+  '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/stopwatch': typeof StopwatchRoute
   '/traffic-light': typeof TrafficLightRoute
 }
@@ -113,24 +145,50 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/gradient': typeof GradientRoute
   '/quote': typeof QuoteRoute
+  '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/stopwatch': typeof StopwatchRoute
   '/traffic-light': typeof TrafficLightRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dice' | '/quote' | '/stopwatch' | '/traffic-light'
+  fullPaths:
+    | '/'
+    | '/dice'
+    | '/gradient'
+    | '/quote'
+    | '/rock-paper-scissors'
+    | '/stopwatch'
+    | '/traffic-light'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dice' | '/quote' | '/stopwatch' | '/traffic-light'
-  id: '__root__' | '/' | '/dice' | '/quote' | '/stopwatch' | '/traffic-light'
+  to:
+    | '/'
+    | '/dice'
+    | '/gradient'
+    | '/quote'
+    | '/rock-paper-scissors'
+    | '/stopwatch'
+    | '/traffic-light'
+  id:
+    | '__root__'
+    | '/'
+    | '/dice'
+    | '/gradient'
+    | '/quote'
+    | '/rock-paper-scissors'
+    | '/stopwatch'
+    | '/traffic-light'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiceRoute: typeof DiceRoute
+  GradientRoute: typeof GradientRoute
   QuoteRoute: typeof QuoteRoute
+  RockPaperScissorsRoute: typeof RockPaperScissorsRoute
   StopwatchRoute: typeof StopwatchRoute
   TrafficLightRoute: typeof TrafficLightRoute
 }
@@ -138,7 +196,9 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiceRoute: DiceRoute,
+  GradientRoute: GradientRoute,
   QuoteRoute: QuoteRoute,
+  RockPaperScissorsRoute: RockPaperScissorsRoute,
   StopwatchRoute: StopwatchRoute,
   TrafficLightRoute: TrafficLightRoute,
 }
@@ -155,7 +215,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/dice",
+        "/gradient",
         "/quote",
+        "/rock-paper-scissors",
         "/stopwatch",
         "/traffic-light"
       ]
@@ -166,8 +228,14 @@ export const routeTree = rootRoute
     "/dice": {
       "filePath": "dice.tsx"
     },
+    "/gradient": {
+      "filePath": "gradient.tsx"
+    },
     "/quote": {
       "filePath": "quote.tsx"
+    },
+    "/rock-paper-scissors": {
+      "filePath": "rock-paper-scissors.tsx"
     },
     "/stopwatch": {
       "filePath": "stopwatch.tsx"
