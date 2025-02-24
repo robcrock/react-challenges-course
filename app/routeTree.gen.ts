@@ -15,9 +15,15 @@ import { Route as WhackAMoleImport } from './routes/whack-a-mole'
 import { Route as TrafficLightImport } from './routes/traffic-light'
 import { Route as TicTacToeImport } from './routes/tic-tac-toe'
 import { Route as StopwatchImport } from './routes/stopwatch'
+import { Route as SpeedImport } from './routes/speed'
+import { Route as SimonImport } from './routes/simon'
 import { Route as RockPaperScissorsImport } from './routes/rock-paper-scissors'
 import { Route as QuoteImport } from './routes/quote'
+import { Route as QuizImport } from './routes/quiz'
+import { Route as MemoryImport } from './routes/memory'
+import { Route as HangmanImport } from './routes/hangman'
 import { Route as GradientImport } from './routes/gradient'
+import { Route as ExpenseImport } from './routes/expense'
 import { Route as DiceImport } from './routes/dice'
 import { Route as IndexImport } from './routes/index'
 
@@ -47,6 +53,18 @@ const StopwatchRoute = StopwatchImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const SpeedRoute = SpeedImport.update({
+  id: '/speed',
+  path: '/speed',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SimonRoute = SimonImport.update({
+  id: '/simon',
+  path: '/simon',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const RockPaperScissorsRoute = RockPaperScissorsImport.update({
   id: '/rock-paper-scissors',
   path: '/rock-paper-scissors',
@@ -59,9 +77,33 @@ const QuoteRoute = QuoteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const QuizRoute = QuizImport.update({
+  id: '/quiz',
+  path: '/quiz',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MemoryRoute = MemoryImport.update({
+  id: '/memory',
+  path: '/memory',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HangmanRoute = HangmanImport.update({
+  id: '/hangman',
+  path: '/hangman',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const GradientRoute = GradientImport.update({
   id: '/gradient',
   path: '/gradient',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExpenseRoute = ExpenseImport.update({
+  id: '/expense',
+  path: '/expense',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -95,11 +137,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiceImport
       parentRoute: typeof rootRoute
     }
+    '/expense': {
+      id: '/expense'
+      path: '/expense'
+      fullPath: '/expense'
+      preLoaderRoute: typeof ExpenseImport
+      parentRoute: typeof rootRoute
+    }
     '/gradient': {
       id: '/gradient'
       path: '/gradient'
       fullPath: '/gradient'
       preLoaderRoute: typeof GradientImport
+      parentRoute: typeof rootRoute
+    }
+    '/hangman': {
+      id: '/hangman'
+      path: '/hangman'
+      fullPath: '/hangman'
+      preLoaderRoute: typeof HangmanImport
+      parentRoute: typeof rootRoute
+    }
+    '/memory': {
+      id: '/memory'
+      path: '/memory'
+      fullPath: '/memory'
+      preLoaderRoute: typeof MemoryImport
+      parentRoute: typeof rootRoute
+    }
+    '/quiz': {
+      id: '/quiz'
+      path: '/quiz'
+      fullPath: '/quiz'
+      preLoaderRoute: typeof QuizImport
       parentRoute: typeof rootRoute
     }
     '/quote': {
@@ -114,6 +184,20 @@ declare module '@tanstack/react-router' {
       path: '/rock-paper-scissors'
       fullPath: '/rock-paper-scissors'
       preLoaderRoute: typeof RockPaperScissorsImport
+      parentRoute: typeof rootRoute
+    }
+    '/simon': {
+      id: '/simon'
+      path: '/simon'
+      fullPath: '/simon'
+      preLoaderRoute: typeof SimonImport
+      parentRoute: typeof rootRoute
+    }
+    '/speed': {
+      id: '/speed'
+      path: '/speed'
+      fullPath: '/speed'
+      preLoaderRoute: typeof SpeedImport
       parentRoute: typeof rootRoute
     }
     '/stopwatch': {
@@ -152,9 +236,15 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
+  '/hangman': typeof HangmanRoute
+  '/memory': typeof MemoryRoute
+  '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
+  '/simon': typeof SimonRoute
+  '/speed': typeof SpeedRoute
   '/stopwatch': typeof StopwatchRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
@@ -164,9 +254,15 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
+  '/hangman': typeof HangmanRoute
+  '/memory': typeof MemoryRoute
+  '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
+  '/simon': typeof SimonRoute
+  '/speed': typeof SpeedRoute
   '/stopwatch': typeof StopwatchRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
@@ -177,9 +273,15 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/dice': typeof DiceRoute
+  '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
+  '/hangman': typeof HangmanRoute
+  '/memory': typeof MemoryRoute
+  '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
+  '/simon': typeof SimonRoute
+  '/speed': typeof SpeedRoute
   '/stopwatch': typeof StopwatchRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
@@ -191,9 +293,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dice'
+    | '/expense'
     | '/gradient'
+    | '/hangman'
+    | '/memory'
+    | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
+    | '/simon'
+    | '/speed'
     | '/stopwatch'
     | '/tic-tac-toe'
     | '/traffic-light'
@@ -202,9 +310,15 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dice'
+    | '/expense'
     | '/gradient'
+    | '/hangman'
+    | '/memory'
+    | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
+    | '/simon'
+    | '/speed'
     | '/stopwatch'
     | '/tic-tac-toe'
     | '/traffic-light'
@@ -213,9 +327,15 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dice'
+    | '/expense'
     | '/gradient'
+    | '/hangman'
+    | '/memory'
+    | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
+    | '/simon'
+    | '/speed'
     | '/stopwatch'
     | '/tic-tac-toe'
     | '/traffic-light'
@@ -226,9 +346,15 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiceRoute: typeof DiceRoute
+  ExpenseRoute: typeof ExpenseRoute
   GradientRoute: typeof GradientRoute
+  HangmanRoute: typeof HangmanRoute
+  MemoryRoute: typeof MemoryRoute
+  QuizRoute: typeof QuizRoute
   QuoteRoute: typeof QuoteRoute
   RockPaperScissorsRoute: typeof RockPaperScissorsRoute
+  SimonRoute: typeof SimonRoute
+  SpeedRoute: typeof SpeedRoute
   StopwatchRoute: typeof StopwatchRoute
   TicTacToeRoute: typeof TicTacToeRoute
   TrafficLightRoute: typeof TrafficLightRoute
@@ -238,9 +364,15 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiceRoute: DiceRoute,
+  ExpenseRoute: ExpenseRoute,
   GradientRoute: GradientRoute,
+  HangmanRoute: HangmanRoute,
+  MemoryRoute: MemoryRoute,
+  QuizRoute: QuizRoute,
   QuoteRoute: QuoteRoute,
   RockPaperScissorsRoute: RockPaperScissorsRoute,
+  SimonRoute: SimonRoute,
+  SpeedRoute: SpeedRoute,
   StopwatchRoute: StopwatchRoute,
   TicTacToeRoute: TicTacToeRoute,
   TrafficLightRoute: TrafficLightRoute,
@@ -259,9 +391,15 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/dice",
+        "/expense",
         "/gradient",
+        "/hangman",
+        "/memory",
+        "/quiz",
         "/quote",
         "/rock-paper-scissors",
+        "/simon",
+        "/speed",
         "/stopwatch",
         "/tic-tac-toe",
         "/traffic-light",
@@ -274,14 +412,32 @@ export const routeTree = rootRoute
     "/dice": {
       "filePath": "dice.tsx"
     },
+    "/expense": {
+      "filePath": "expense.tsx"
+    },
     "/gradient": {
       "filePath": "gradient.tsx"
+    },
+    "/hangman": {
+      "filePath": "hangman.tsx"
+    },
+    "/memory": {
+      "filePath": "memory.tsx"
+    },
+    "/quiz": {
+      "filePath": "quiz.tsx"
     },
     "/quote": {
       "filePath": "quote.tsx"
     },
     "/rock-paper-scissors": {
       "filePath": "rock-paper-scissors.tsx"
+    },
+    "/simon": {
+      "filePath": "simon.tsx"
+    },
+    "/speed": {
+      "filePath": "speed.tsx"
     },
     "/stopwatch": {
       "filePath": "stopwatch.tsx"
