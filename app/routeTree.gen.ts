@@ -12,19 +12,25 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as WhackAMoleImport } from './routes/whack-a-mole'
+import { Route as TreeImport } from './routes/tree'
 import { Route as TrafficLightImport } from './routes/traffic-light'
 import { Route as TicTacToeImport } from './routes/tic-tac-toe'
 import { Route as StopwatchImport } from './routes/stopwatch'
+import { Route as SplitImport } from './routes/split'
 import { Route as SpeedImport } from './routes/speed'
 import { Route as SimonImport } from './routes/simon'
 import { Route as RockPaperScissorsImport } from './routes/rock-paper-scissors'
 import { Route as QuoteImport } from './routes/quote'
 import { Route as QuizImport } from './routes/quiz'
 import { Route as MemoryImport } from './routes/memory'
+import { Route as HistogramImport } from './routes/histogram'
+import { Route as HanoiImport } from './routes/hanoi'
 import { Route as HangmanImport } from './routes/hangman'
 import { Route as GradientImport } from './routes/gradient'
 import { Route as ExpenseImport } from './routes/expense'
 import { Route as DiceImport } from './routes/dice'
+import { Route as ConnectFourImport } from './routes/connect-four'
+import { Route as CalculatorImport } from './routes/calculator'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -32,6 +38,12 @@ import { Route as IndexImport } from './routes/index'
 const WhackAMoleRoute = WhackAMoleImport.update({
   id: '/whack-a-mole',
   path: '/whack-a-mole',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TreeRoute = TreeImport.update({
+  id: '/tree',
+  path: '/tree',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -50,6 +62,12 @@ const TicTacToeRoute = TicTacToeImport.update({
 const StopwatchRoute = StopwatchImport.update({
   id: '/stopwatch',
   path: '/stopwatch',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SplitRoute = SplitImport.update({
+  id: '/split',
+  path: '/split',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -89,6 +107,18 @@ const MemoryRoute = MemoryImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const HistogramRoute = HistogramImport.update({
+  id: '/histogram',
+  path: '/histogram',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HanoiRoute = HanoiImport.update({
+  id: '/hanoi',
+  path: '/hanoi',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const HangmanRoute = HangmanImport.update({
   id: '/hangman',
   path: '/hangman',
@@ -113,6 +143,18 @@ const DiceRoute = DiceImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ConnectFourRoute = ConnectFourImport.update({
+  id: '/connect-four',
+  path: '/connect-four',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CalculatorRoute = CalculatorImport.update({
+  id: '/calculator',
+  path: '/calculator',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
@@ -128,6 +170,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/calculator': {
+      id: '/calculator'
+      path: '/calculator'
+      fullPath: '/calculator'
+      preLoaderRoute: typeof CalculatorImport
+      parentRoute: typeof rootRoute
+    }
+    '/connect-four': {
+      id: '/connect-four'
+      path: '/connect-four'
+      fullPath: '/connect-four'
+      preLoaderRoute: typeof ConnectFourImport
       parentRoute: typeof rootRoute
     }
     '/dice': {
@@ -156,6 +212,20 @@ declare module '@tanstack/react-router' {
       path: '/hangman'
       fullPath: '/hangman'
       preLoaderRoute: typeof HangmanImport
+      parentRoute: typeof rootRoute
+    }
+    '/hanoi': {
+      id: '/hanoi'
+      path: '/hanoi'
+      fullPath: '/hanoi'
+      preLoaderRoute: typeof HanoiImport
+      parentRoute: typeof rootRoute
+    }
+    '/histogram': {
+      id: '/histogram'
+      path: '/histogram'
+      fullPath: '/histogram'
+      preLoaderRoute: typeof HistogramImport
       parentRoute: typeof rootRoute
     }
     '/memory': {
@@ -200,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpeedImport
       parentRoute: typeof rootRoute
     }
+    '/split': {
+      id: '/split'
+      path: '/split'
+      fullPath: '/split'
+      preLoaderRoute: typeof SplitImport
+      parentRoute: typeof rootRoute
+    }
     '/stopwatch': {
       id: '/stopwatch'
       path: '/stopwatch'
@@ -221,6 +298,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrafficLightImport
       parentRoute: typeof rootRoute
     }
+    '/tree': {
+      id: '/tree'
+      path: '/tree'
+      fullPath: '/tree'
+      preLoaderRoute: typeof TreeImport
+      parentRoute: typeof rootRoute
+    }
     '/whack-a-mole': {
       id: '/whack-a-mole'
       path: '/whack-a-mole'
@@ -235,56 +319,74 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/calculator': typeof CalculatorRoute
+  '/connect-four': typeof ConnectFourRoute
   '/dice': typeof DiceRoute
   '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
   '/hangman': typeof HangmanRoute
+  '/hanoi': typeof HanoiRoute
+  '/histogram': typeof HistogramRoute
   '/memory': typeof MemoryRoute
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/simon': typeof SimonRoute
   '/speed': typeof SpeedRoute
+  '/split': typeof SplitRoute
   '/stopwatch': typeof StopwatchRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
+  '/tree': typeof TreeRoute
   '/whack-a-mole': typeof WhackAMoleRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/calculator': typeof CalculatorRoute
+  '/connect-four': typeof ConnectFourRoute
   '/dice': typeof DiceRoute
   '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
   '/hangman': typeof HangmanRoute
+  '/hanoi': typeof HanoiRoute
+  '/histogram': typeof HistogramRoute
   '/memory': typeof MemoryRoute
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/simon': typeof SimonRoute
   '/speed': typeof SpeedRoute
+  '/split': typeof SplitRoute
   '/stopwatch': typeof StopwatchRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
+  '/tree': typeof TreeRoute
   '/whack-a-mole': typeof WhackAMoleRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/calculator': typeof CalculatorRoute
+  '/connect-four': typeof ConnectFourRoute
   '/dice': typeof DiceRoute
   '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
   '/hangman': typeof HangmanRoute
+  '/hanoi': typeof HanoiRoute
+  '/histogram': typeof HistogramRoute
   '/memory': typeof MemoryRoute
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/simon': typeof SimonRoute
   '/speed': typeof SpeedRoute
+  '/split': typeof SplitRoute
   '/stopwatch': typeof StopwatchRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
+  '/tree': typeof TreeRoute
   '/whack-a-mole': typeof WhackAMoleRoute
 }
 
@@ -292,90 +394,120 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/calculator'
+    | '/connect-four'
     | '/dice'
     | '/expense'
     | '/gradient'
     | '/hangman'
+    | '/hanoi'
+    | '/histogram'
     | '/memory'
     | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
     | '/simon'
     | '/speed'
+    | '/split'
     | '/stopwatch'
     | '/tic-tac-toe'
     | '/traffic-light'
+    | '/tree'
     | '/whack-a-mole'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/calculator'
+    | '/connect-four'
     | '/dice'
     | '/expense'
     | '/gradient'
     | '/hangman'
+    | '/hanoi'
+    | '/histogram'
     | '/memory'
     | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
     | '/simon'
     | '/speed'
+    | '/split'
     | '/stopwatch'
     | '/tic-tac-toe'
     | '/traffic-light'
+    | '/tree'
     | '/whack-a-mole'
   id:
     | '__root__'
     | '/'
+    | '/calculator'
+    | '/connect-four'
     | '/dice'
     | '/expense'
     | '/gradient'
     | '/hangman'
+    | '/hanoi'
+    | '/histogram'
     | '/memory'
     | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
     | '/simon'
     | '/speed'
+    | '/split'
     | '/stopwatch'
     | '/tic-tac-toe'
     | '/traffic-light'
+    | '/tree'
     | '/whack-a-mole'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CalculatorRoute: typeof CalculatorRoute
+  ConnectFourRoute: typeof ConnectFourRoute
   DiceRoute: typeof DiceRoute
   ExpenseRoute: typeof ExpenseRoute
   GradientRoute: typeof GradientRoute
   HangmanRoute: typeof HangmanRoute
+  HanoiRoute: typeof HanoiRoute
+  HistogramRoute: typeof HistogramRoute
   MemoryRoute: typeof MemoryRoute
   QuizRoute: typeof QuizRoute
   QuoteRoute: typeof QuoteRoute
   RockPaperScissorsRoute: typeof RockPaperScissorsRoute
   SimonRoute: typeof SimonRoute
   SpeedRoute: typeof SpeedRoute
+  SplitRoute: typeof SplitRoute
   StopwatchRoute: typeof StopwatchRoute
   TicTacToeRoute: typeof TicTacToeRoute
   TrafficLightRoute: typeof TrafficLightRoute
+  TreeRoute: typeof TreeRoute
   WhackAMoleRoute: typeof WhackAMoleRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CalculatorRoute: CalculatorRoute,
+  ConnectFourRoute: ConnectFourRoute,
   DiceRoute: DiceRoute,
   ExpenseRoute: ExpenseRoute,
   GradientRoute: GradientRoute,
   HangmanRoute: HangmanRoute,
+  HanoiRoute: HanoiRoute,
+  HistogramRoute: HistogramRoute,
   MemoryRoute: MemoryRoute,
   QuizRoute: QuizRoute,
   QuoteRoute: QuoteRoute,
   RockPaperScissorsRoute: RockPaperScissorsRoute,
   SimonRoute: SimonRoute,
   SpeedRoute: SpeedRoute,
+  SplitRoute: SplitRoute,
   StopwatchRoute: StopwatchRoute,
   TicTacToeRoute: TicTacToeRoute,
   TrafficLightRoute: TrafficLightRoute,
+  TreeRoute: TreeRoute,
   WhackAMoleRoute: WhackAMoleRoute,
 }
 
@@ -390,24 +522,36 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/calculator",
+        "/connect-four",
         "/dice",
         "/expense",
         "/gradient",
         "/hangman",
+        "/hanoi",
+        "/histogram",
         "/memory",
         "/quiz",
         "/quote",
         "/rock-paper-scissors",
         "/simon",
         "/speed",
+        "/split",
         "/stopwatch",
         "/tic-tac-toe",
         "/traffic-light",
+        "/tree",
         "/whack-a-mole"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/calculator": {
+      "filePath": "calculator.tsx"
+    },
+    "/connect-four": {
+      "filePath": "connect-four.tsx"
     },
     "/dice": {
       "filePath": "dice.tsx"
@@ -420,6 +564,12 @@ export const routeTree = rootRoute
     },
     "/hangman": {
       "filePath": "hangman.tsx"
+    },
+    "/hanoi": {
+      "filePath": "hanoi.tsx"
+    },
+    "/histogram": {
+      "filePath": "histogram.tsx"
     },
     "/memory": {
       "filePath": "memory.tsx"
@@ -439,6 +589,9 @@ export const routeTree = rootRoute
     "/speed": {
       "filePath": "speed.tsx"
     },
+    "/split": {
+      "filePath": "split.tsx"
+    },
     "/stopwatch": {
       "filePath": "stopwatch.tsx"
     },
@@ -447,6 +600,9 @@ export const routeTree = rootRoute
     },
     "/traffic-light": {
       "filePath": "traffic-light.tsx"
+    },
+    "/tree": {
+      "filePath": "tree.tsx"
     },
     "/whack-a-mole": {
       "filePath": "whack-a-mole.tsx"
