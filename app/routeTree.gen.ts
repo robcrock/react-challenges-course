@@ -22,6 +22,7 @@ import { Route as SimonImport } from './routes/simon'
 import { Route as RockPaperScissorsImport } from './routes/rock-paper-scissors'
 import { Route as QuoteImport } from './routes/quote'
 import { Route as QuizImport } from './routes/quiz'
+import { Route as PasswordImport } from './routes/password'
 import { Route as MemoryImport } from './routes/memory'
 import { Route as HistogramImport } from './routes/histogram'
 import { Route as HanoiImport } from './routes/hanoi'
@@ -98,6 +99,12 @@ const QuoteRoute = QuoteImport.update({
 const QuizRoute = QuizImport.update({
   id: '/quiz',
   path: '/quiz',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PasswordRoute = PasswordImport.update({
+  id: '/password',
+  path: '/password',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -235,6 +242,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemoryImport
       parentRoute: typeof rootRoute
     }
+    '/password': {
+      id: '/password'
+      path: '/password'
+      fullPath: '/password'
+      preLoaderRoute: typeof PasswordImport
+      parentRoute: typeof rootRoute
+    }
     '/quiz': {
       id: '/quiz'
       path: '/quiz'
@@ -328,6 +342,7 @@ export interface FileRoutesByFullPath {
   '/hanoi': typeof HanoiRoute
   '/histogram': typeof HistogramRoute
   '/memory': typeof MemoryRoute
+  '/password': typeof PasswordRoute
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
@@ -352,6 +367,7 @@ export interface FileRoutesByTo {
   '/hanoi': typeof HanoiRoute
   '/histogram': typeof HistogramRoute
   '/memory': typeof MemoryRoute
+  '/password': typeof PasswordRoute
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
@@ -377,6 +393,7 @@ export interface FileRoutesById {
   '/hanoi': typeof HanoiRoute
   '/histogram': typeof HistogramRoute
   '/memory': typeof MemoryRoute
+  '/password': typeof PasswordRoute
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
@@ -403,6 +420,7 @@ export interface FileRouteTypes {
     | '/hanoi'
     | '/histogram'
     | '/memory'
+    | '/password'
     | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
@@ -426,6 +444,7 @@ export interface FileRouteTypes {
     | '/hanoi'
     | '/histogram'
     | '/memory'
+    | '/password'
     | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
@@ -449,6 +468,7 @@ export interface FileRouteTypes {
     | '/hanoi'
     | '/histogram'
     | '/memory'
+    | '/password'
     | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
@@ -474,6 +494,7 @@ export interface RootRouteChildren {
   HanoiRoute: typeof HanoiRoute
   HistogramRoute: typeof HistogramRoute
   MemoryRoute: typeof MemoryRoute
+  PasswordRoute: typeof PasswordRoute
   QuizRoute: typeof QuizRoute
   QuoteRoute: typeof QuoteRoute
   RockPaperScissorsRoute: typeof RockPaperScissorsRoute
@@ -498,6 +519,7 @@ const rootRouteChildren: RootRouteChildren = {
   HanoiRoute: HanoiRoute,
   HistogramRoute: HistogramRoute,
   MemoryRoute: MemoryRoute,
+  PasswordRoute: PasswordRoute,
   QuizRoute: QuizRoute,
   QuoteRoute: QuoteRoute,
   RockPaperScissorsRoute: RockPaperScissorsRoute,
@@ -531,6 +553,7 @@ export const routeTree = rootRoute
         "/hanoi",
         "/histogram",
         "/memory",
+        "/password",
         "/quiz",
         "/quote",
         "/rock-paper-scissors",
@@ -573,6 +596,9 @@ export const routeTree = rootRoute
     },
     "/memory": {
       "filePath": "memory.tsx"
+    },
+    "/password": {
+      "filePath": "password.tsx"
     },
     "/quiz": {
       "filePath": "quiz.tsx"
