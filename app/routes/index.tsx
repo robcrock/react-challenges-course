@@ -26,6 +26,7 @@ function Home() {
     { path: "/traffic-light", title: "Traffic Light" },
     { path: "/tree", title: "Tree Visualization" },
     { path: "/whack-a-mole", title: "Whack-a-Mole" },
+    { path: "/password", title: "Password Generator" },
   ].sort((a, b) => a.title.localeCompare(b.title));
 
   return (
