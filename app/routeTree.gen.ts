@@ -19,6 +19,7 @@ import { Route as StopwatchImport } from './routes/stopwatch'
 import { Route as SplitImport } from './routes/split'
 import { Route as SpeedImport } from './routes/speed'
 import { Route as SimonImport } from './routes/simon'
+import { Route as RockPaperScissorsRobImport } from './routes/rock-paper-scissors-rob'
 import { Route as RockPaperScissorsImport } from './routes/rock-paper-scissors'
 import { Route as QuoteImport } from './routes/quote'
 import { Route as QuizImport } from './routes/quiz'
@@ -81,6 +82,12 @@ const SpeedRoute = SpeedImport.update({
 const SimonRoute = SimonImport.update({
   id: '/simon',
   path: '/simon',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const RockPaperScissorsRobRoute = RockPaperScissorsRobImport.update({
+  id: '/rock-paper-scissors-rob',
+  path: '/rock-paper-scissors-rob',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -270,6 +277,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RockPaperScissorsImport
       parentRoute: typeof rootRoute
     }
+    '/rock-paper-scissors-rob': {
+      id: '/rock-paper-scissors-rob'
+      path: '/rock-paper-scissors-rob'
+      fullPath: '/rock-paper-scissors-rob'
+      preLoaderRoute: typeof RockPaperScissorsRobImport
+      parentRoute: typeof rootRoute
+    }
     '/simon': {
       id: '/simon'
       path: '/simon'
@@ -346,6 +360,7 @@ export interface FileRoutesByFullPath {
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
+  '/rock-paper-scissors-rob': typeof RockPaperScissorsRobRoute
   '/simon': typeof SimonRoute
   '/speed': typeof SpeedRoute
   '/split': typeof SplitRoute
@@ -371,6 +386,7 @@ export interface FileRoutesByTo {
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
+  '/rock-paper-scissors-rob': typeof RockPaperScissorsRobRoute
   '/simon': typeof SimonRoute
   '/speed': typeof SpeedRoute
   '/split': typeof SplitRoute
@@ -397,6 +413,7 @@ export interface FileRoutesById {
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
+  '/rock-paper-scissors-rob': typeof RockPaperScissorsRobRoute
   '/simon': typeof SimonRoute
   '/speed': typeof SpeedRoute
   '/split': typeof SplitRoute
@@ -424,6 +441,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
+    | '/rock-paper-scissors-rob'
     | '/simon'
     | '/speed'
     | '/split'
@@ -448,6 +466,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
+    | '/rock-paper-scissors-rob'
     | '/simon'
     | '/speed'
     | '/split'
@@ -472,6 +491,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/quote'
     | '/rock-paper-scissors'
+    | '/rock-paper-scissors-rob'
     | '/simon'
     | '/speed'
     | '/split'
@@ -498,6 +518,7 @@ export interface RootRouteChildren {
   QuizRoute: typeof QuizRoute
   QuoteRoute: typeof QuoteRoute
   RockPaperScissorsRoute: typeof RockPaperScissorsRoute
+  RockPaperScissorsRobRoute: typeof RockPaperScissorsRobRoute
   SimonRoute: typeof SimonRoute
   SpeedRoute: typeof SpeedRoute
   SplitRoute: typeof SplitRoute
@@ -523,6 +544,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuizRoute: QuizRoute,
   QuoteRoute: QuoteRoute,
   RockPaperScissorsRoute: RockPaperScissorsRoute,
+  RockPaperScissorsRobRoute: RockPaperScissorsRobRoute,
   SimonRoute: SimonRoute,
   SpeedRoute: SpeedRoute,
   SplitRoute: SplitRoute,
@@ -557,6 +579,7 @@ export const routeTree = rootRoute
         "/quiz",
         "/quote",
         "/rock-paper-scissors",
+        "/rock-paper-scissors-rob",
         "/simon",
         "/speed",
         "/split",
@@ -608,6 +631,9 @@ export const routeTree = rootRoute
     },
     "/rock-paper-scissors": {
       "filePath": "rock-paper-scissors.tsx"
+    },
+    "/rock-paper-scissors-rob": {
+      "filePath": "rock-paper-scissors-rob.tsx"
     },
     "/simon": {
       "filePath": "simon.tsx"
