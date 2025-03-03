@@ -15,6 +15,7 @@ import { Route as WhackAMoleImport } from './routes/whack-a-mole'
 import { Route as TreeImport } from './routes/tree'
 import { Route as TrafficLightImport } from './routes/traffic-light'
 import { Route as TicTacToeImport } from './routes/tic-tac-toe'
+import { Route as StopwatchRobImport } from './routes/stopwatch-rob'
 import { Route as StopwatchImport } from './routes/stopwatch'
 import { Route as SplitImport } from './routes/split'
 import { Route as SpeedImport } from './routes/speed'
@@ -58,6 +59,12 @@ const TrafficLightRoute = TrafficLightImport.update({
 const TicTacToeRoute = TicTacToeImport.update({
   id: '/tic-tac-toe',
   path: '/tic-tac-toe',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const StopwatchRobRoute = StopwatchRobImport.update({
+  id: '/stopwatch-rob',
+  path: '/stopwatch-rob',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -312,6 +319,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StopwatchImport
       parentRoute: typeof rootRoute
     }
+    '/stopwatch-rob': {
+      id: '/stopwatch-rob'
+      path: '/stopwatch-rob'
+      fullPath: '/stopwatch-rob'
+      preLoaderRoute: typeof StopwatchRobImport
+      parentRoute: typeof rootRoute
+    }
     '/tic-tac-toe': {
       id: '/tic-tac-toe'
       path: '/tic-tac-toe'
@@ -365,6 +379,7 @@ export interface FileRoutesByFullPath {
   '/speed': typeof SpeedRoute
   '/split': typeof SplitRoute
   '/stopwatch': typeof StopwatchRoute
+  '/stopwatch-rob': typeof StopwatchRobRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
   '/tree': typeof TreeRoute
@@ -391,6 +406,7 @@ export interface FileRoutesByTo {
   '/speed': typeof SpeedRoute
   '/split': typeof SplitRoute
   '/stopwatch': typeof StopwatchRoute
+  '/stopwatch-rob': typeof StopwatchRobRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
   '/tree': typeof TreeRoute
@@ -418,6 +434,7 @@ export interface FileRoutesById {
   '/speed': typeof SpeedRoute
   '/split': typeof SplitRoute
   '/stopwatch': typeof StopwatchRoute
+  '/stopwatch-rob': typeof StopwatchRobRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
   '/tree': typeof TreeRoute
@@ -446,6 +463,7 @@ export interface FileRouteTypes {
     | '/speed'
     | '/split'
     | '/stopwatch'
+    | '/stopwatch-rob'
     | '/tic-tac-toe'
     | '/traffic-light'
     | '/tree'
@@ -471,6 +489,7 @@ export interface FileRouteTypes {
     | '/speed'
     | '/split'
     | '/stopwatch'
+    | '/stopwatch-rob'
     | '/tic-tac-toe'
     | '/traffic-light'
     | '/tree'
@@ -496,6 +515,7 @@ export interface FileRouteTypes {
     | '/speed'
     | '/split'
     | '/stopwatch'
+    | '/stopwatch-rob'
     | '/tic-tac-toe'
     | '/traffic-light'
     | '/tree'
@@ -523,6 +543,7 @@ export interface RootRouteChildren {
   SpeedRoute: typeof SpeedRoute
   SplitRoute: typeof SplitRoute
   StopwatchRoute: typeof StopwatchRoute
+  StopwatchRobRoute: typeof StopwatchRobRoute
   TicTacToeRoute: typeof TicTacToeRoute
   TrafficLightRoute: typeof TrafficLightRoute
   TreeRoute: typeof TreeRoute
@@ -549,6 +570,7 @@ const rootRouteChildren: RootRouteChildren = {
   SpeedRoute: SpeedRoute,
   SplitRoute: SplitRoute,
   StopwatchRoute: StopwatchRoute,
+  StopwatchRobRoute: StopwatchRobRoute,
   TicTacToeRoute: TicTacToeRoute,
   TrafficLightRoute: TrafficLightRoute,
   TreeRoute: TreeRoute,
@@ -584,6 +606,7 @@ export const routeTree = rootRoute
         "/speed",
         "/split",
         "/stopwatch",
+        "/stopwatch-rob",
         "/tic-tac-toe",
         "/traffic-light",
         "/tree",
@@ -646,6 +669,9 @@ export const routeTree = rootRoute
     },
     "/stopwatch": {
       "filePath": "stopwatch.tsx"
+    },
+    "/stopwatch-rob": {
+      "filePath": "stopwatch-rob.tsx"
     },
     "/tic-tac-toe": {
       "filePath": "tic-tac-toe.tsx"
