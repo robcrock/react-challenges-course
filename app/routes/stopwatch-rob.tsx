@@ -12,14 +12,14 @@ type StopwatchState = {
   timerState: State;
 };
 
-type ActionTypes = "start" | "pause" | "reset" | "increment";
+type ActionTypes = "run" | "pause" | "reset" | "increment";
 
 const reducer = (
   state: StopwatchState,
   action: { type: ActionTypes },
 ): StopwatchState => {
   switch (action.type) {
-    case "start":
+    case "run":
       return { ...state, timerState: "running" };
     case "pause":
       return { ...state, timerState: "paused" };
@@ -74,7 +74,7 @@ const ButtonSection = ({ stopwatchState, dispatch }: ButtonSectionProps) => {
     return (
       <button
         className="border border-gray-400 rounded-lg h-10 w-20 text-gray-700"
-        onClick={() => dispatch({ type: "start" })}
+        onClick={() => dispatch({ type: "run" })}
       >
         Start
       </button>
@@ -96,7 +96,7 @@ const ButtonSection = ({ stopwatchState, dispatch }: ButtonSectionProps) => {
     <div className="flex gap-2">
       <button
         className="border border-gray-400 rounded-lg h-10 w-20 text-gray-700"
-        onClick={() => dispatch({ type: "start" })}
+        onClick={() => dispatch({ type: "run" })}
       >
         Resume
       </button>
