@@ -31,6 +31,7 @@ import { Route as HanoiImport } from './routes/hanoi'
 import { Route as HangmanImport } from './routes/hangman'
 import { Route as GradientImport } from './routes/gradient'
 import { Route as ExpenseImport } from './routes/expense'
+import { Route as DiceRobImport } from './routes/dice-rob'
 import { Route as DiceImport } from './routes/dice'
 import { Route as ConnectFourImport } from './routes/connect-four'
 import { Route as CalculatorImport } from './routes/calculator'
@@ -158,6 +159,12 @@ const ExpenseRoute = ExpenseImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const DiceRobRoute = DiceRobImport.update({
+  id: '/dice-rob',
+  path: '/dice-rob',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const DiceRoute = DiceImport.update({
   id: '/dice',
   path: '/dice',
@@ -212,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/dice'
       fullPath: '/dice'
       preLoaderRoute: typeof DiceImport
+      parentRoute: typeof rootRoute
+    }
+    '/dice-rob': {
+      id: '/dice-rob'
+      path: '/dice-rob'
+      fullPath: '/dice-rob'
+      preLoaderRoute: typeof DiceRobImport
       parentRoute: typeof rootRoute
     }
     '/expense': {
@@ -364,6 +378,7 @@ export interface FileRoutesByFullPath {
   '/calculator': typeof CalculatorRoute
   '/connect-four': typeof ConnectFourRoute
   '/dice': typeof DiceRoute
+  '/dice-rob': typeof DiceRobRoute
   '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
   '/hangman': typeof HangmanRoute
@@ -391,6 +406,7 @@ export interface FileRoutesByTo {
   '/calculator': typeof CalculatorRoute
   '/connect-four': typeof ConnectFourRoute
   '/dice': typeof DiceRoute
+  '/dice-rob': typeof DiceRobRoute
   '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
   '/hangman': typeof HangmanRoute
@@ -419,6 +435,7 @@ export interface FileRoutesById {
   '/calculator': typeof CalculatorRoute
   '/connect-four': typeof ConnectFourRoute
   '/dice': typeof DiceRoute
+  '/dice-rob': typeof DiceRobRoute
   '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
   '/hangman': typeof HangmanRoute
@@ -448,6 +465,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/connect-four'
     | '/dice'
+    | '/dice-rob'
     | '/expense'
     | '/gradient'
     | '/hangman'
@@ -474,6 +492,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/connect-four'
     | '/dice'
+    | '/dice-rob'
     | '/expense'
     | '/gradient'
     | '/hangman'
@@ -500,6 +519,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/connect-four'
     | '/dice'
+    | '/dice-rob'
     | '/expense'
     | '/gradient'
     | '/hangman'
@@ -528,6 +548,7 @@ export interface RootRouteChildren {
   CalculatorRoute: typeof CalculatorRoute
   ConnectFourRoute: typeof ConnectFourRoute
   DiceRoute: typeof DiceRoute
+  DiceRobRoute: typeof DiceRobRoute
   ExpenseRoute: typeof ExpenseRoute
   GradientRoute: typeof GradientRoute
   HangmanRoute: typeof HangmanRoute
@@ -555,6 +576,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalculatorRoute: CalculatorRoute,
   ConnectFourRoute: ConnectFourRoute,
   DiceRoute: DiceRoute,
+  DiceRobRoute: DiceRobRoute,
   ExpenseRoute: ExpenseRoute,
   GradientRoute: GradientRoute,
   HangmanRoute: HangmanRoute,
@@ -591,6 +613,7 @@ export const routeTree = rootRoute
         "/calculator",
         "/connect-four",
         "/dice",
+        "/dice-rob",
         "/expense",
         "/gradient",
         "/hangman",
@@ -624,6 +647,9 @@ export const routeTree = rootRoute
     },
     "/dice": {
       "filePath": "dice.tsx"
+    },
+    "/dice-rob": {
+      "filePath": "dice-rob.tsx"
     },
     "/expense": {
       "filePath": "expense.tsx"
