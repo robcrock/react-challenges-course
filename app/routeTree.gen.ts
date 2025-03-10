@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as WhackAMoleImport } from './routes/whack-a-mole'
 import { Route as TreeImport } from './routes/tree'
+import { Route as TrafficLightRobImport } from './routes/traffic-light-rob'
 import { Route as TrafficLightImport } from './routes/traffic-light'
 import { Route as TicTacToeImport } from './routes/tic-tac-toe'
 import { Route as StopwatchRobImport } from './routes/stopwatch-rob'
@@ -48,6 +49,12 @@ const WhackAMoleRoute = WhackAMoleImport.update({
 const TreeRoute = TreeImport.update({
   id: '/tree',
   path: '/tree',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TrafficLightRobRoute = TrafficLightRobImport.update({
+  id: '/traffic-light-rob',
+  path: '/traffic-light-rob',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -354,6 +361,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrafficLightImport
       parentRoute: typeof rootRoute
     }
+    '/traffic-light-rob': {
+      id: '/traffic-light-rob'
+      path: '/traffic-light-rob'
+      fullPath: '/traffic-light-rob'
+      preLoaderRoute: typeof TrafficLightRobImport
+      parentRoute: typeof rootRoute
+    }
     '/tree': {
       id: '/tree'
       path: '/tree'
@@ -397,6 +411,7 @@ export interface FileRoutesByFullPath {
   '/stopwatch-rob': typeof StopwatchRobRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
+  '/traffic-light-rob': typeof TrafficLightRobRoute
   '/tree': typeof TreeRoute
   '/whack-a-mole': typeof WhackAMoleRoute
 }
@@ -425,6 +440,7 @@ export interface FileRoutesByTo {
   '/stopwatch-rob': typeof StopwatchRobRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
+  '/traffic-light-rob': typeof TrafficLightRobRoute
   '/tree': typeof TreeRoute
   '/whack-a-mole': typeof WhackAMoleRoute
 }
@@ -454,6 +470,7 @@ export interface FileRoutesById {
   '/stopwatch-rob': typeof StopwatchRobRoute
   '/tic-tac-toe': typeof TicTacToeRoute
   '/traffic-light': typeof TrafficLightRoute
+  '/traffic-light-rob': typeof TrafficLightRobRoute
   '/tree': typeof TreeRoute
   '/whack-a-mole': typeof WhackAMoleRoute
 }
@@ -484,6 +501,7 @@ export interface FileRouteTypes {
     | '/stopwatch-rob'
     | '/tic-tac-toe'
     | '/traffic-light'
+    | '/traffic-light-rob'
     | '/tree'
     | '/whack-a-mole'
   fileRoutesByTo: FileRoutesByTo
@@ -511,6 +529,7 @@ export interface FileRouteTypes {
     | '/stopwatch-rob'
     | '/tic-tac-toe'
     | '/traffic-light'
+    | '/traffic-light-rob'
     | '/tree'
     | '/whack-a-mole'
   id:
@@ -538,6 +557,7 @@ export interface FileRouteTypes {
     | '/stopwatch-rob'
     | '/tic-tac-toe'
     | '/traffic-light'
+    | '/traffic-light-rob'
     | '/tree'
     | '/whack-a-mole'
   fileRoutesById: FileRoutesById
@@ -567,6 +587,7 @@ export interface RootRouteChildren {
   StopwatchRobRoute: typeof StopwatchRobRoute
   TicTacToeRoute: typeof TicTacToeRoute
   TrafficLightRoute: typeof TrafficLightRoute
+  TrafficLightRobRoute: typeof TrafficLightRobRoute
   TreeRoute: typeof TreeRoute
   WhackAMoleRoute: typeof WhackAMoleRoute
 }
@@ -595,6 +616,7 @@ const rootRouteChildren: RootRouteChildren = {
   StopwatchRobRoute: StopwatchRobRoute,
   TicTacToeRoute: TicTacToeRoute,
   TrafficLightRoute: TrafficLightRoute,
+  TrafficLightRobRoute: TrafficLightRobRoute,
   TreeRoute: TreeRoute,
   WhackAMoleRoute: WhackAMoleRoute,
 }
@@ -632,6 +654,7 @@ export const routeTree = rootRoute
         "/stopwatch-rob",
         "/tic-tac-toe",
         "/traffic-light",
+        "/traffic-light-rob",
         "/tree",
         "/whack-a-mole"
       ]
@@ -704,6 +727,9 @@ export const routeTree = rootRoute
     },
     "/traffic-light": {
       "filePath": "traffic-light.tsx"
+    },
+    "/traffic-light-rob": {
+      "filePath": "traffic-light-rob.tsx"
     },
     "/tree": {
       "filePath": "tree.tsx"

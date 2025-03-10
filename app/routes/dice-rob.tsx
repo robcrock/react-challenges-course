@@ -17,7 +17,7 @@ function RouteComponent() {
 
   return (
     <div className="h-screen flex flex-col items-center justify-center gap-4">
-      {number !== undefined && <Dice number={number} />}
+      <Dice number={number} />
       <button
         className="px-4 py-2 rounded-md border border-gray-700"
         onClick={handleRoll}
@@ -28,7 +28,7 @@ function RouteComponent() {
   );
 }
 
-const Dice = ({ number }: { number: number }) => {
+const Dice = ({ number }: { number?: number }) => {
   return (
     <div className="h-20 w-20 rounded-md border border-gray-600 p-4">
       {number === 1 && (
@@ -36,7 +36,6 @@ const Dice = ({ number }: { number: number }) => {
           <Dot />
         </div>
       )}
-
       {number === 2 && (
         <div className="h-full w-full grid grid-cols-2 grid-rows-2">
           <Dot className="justify-self-start self-start" />
@@ -45,7 +44,6 @@ const Dice = ({ number }: { number: number }) => {
           <Dot className="justify-self-end self-end" />
         </div>
       )}
-
       {number === 3 && (
         <div className="h-full w-full grid grid-cols-3 grid-rows-3">
           <Dot className="justify-self-start self-start col-start-1 row-start-1" />
@@ -53,7 +51,6 @@ const Dice = ({ number }: { number: number }) => {
           <Dot className="justify-self-end self-end col-start-3 row-start-3" />
         </div>
       )}
-
       {number === 4 && (
         <div className="h-full w-full grid grid-cols-2 grid-rows-2">
           <Dot className="justify-self-start self-start" />
@@ -62,7 +59,6 @@ const Dice = ({ number }: { number: number }) => {
           <Dot className="justify-self-end self-end" />
         </div>
       )}
-
       {number === 5 && (
         <div className="h-full w-full grid grid-cols-3 grid-rows-3">
           <Dot className="justify-self-start self-start col-start-1 row-start-1" />
@@ -72,7 +68,6 @@ const Dice = ({ number }: { number: number }) => {
           <Dot className="justify-self-end self-end col-start-3 row-start-3" />
         </div>
       )}
-
       {number === 6 && (
         <div className="h-full w-full grid grid-cols-2 grid-rows-3">
           <Dot className="justify-self-start self-start" />
@@ -83,10 +78,16 @@ const Dice = ({ number }: { number: number }) => {
           <Dot className="justify-self-end self-end" />
         </div>
       )}
+
+      {!number && (
+        <div className="h-full w-full grid grid-cols-1">
+          <p className="justify-self-center self-center">?</p>
+        </div>
+      )}
     </div>
   );
 };
 
 const Dot = ({ className = "" }: { className?: string }) => {
-  return <div className={`h-2 w-2 bg-white rounded-full ${className}`}></div>;
+  return <div className={`size-3 bg-white rounded-full ${className}`}></div>;
 };
