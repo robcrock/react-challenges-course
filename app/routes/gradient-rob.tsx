@@ -23,7 +23,7 @@ function RouteComponent() {
   };
 
   return (
-    <div className="h-screen flex gap-10 border-2 border-red-500 p-8">
+    <div className="h-screen flex gap-10 p-8">
       <div className="space-y-6 h-full max-w-96 p-8 border border-gray-700 rounded">
         <div className="flex flex-row gap-4">
           <div className="flex flex-col gap-2">
