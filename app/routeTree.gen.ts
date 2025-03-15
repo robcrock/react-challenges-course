@@ -31,6 +31,7 @@ import { Route as MemoryImport } from './routes/memory'
 import { Route as HistogramImport } from './routes/histogram'
 import { Route as HanoiImport } from './routes/hanoi'
 import { Route as HangmanImport } from './routes/hangman'
+import { Route as GradientRobImport } from './routes/gradient-rob'
 import { Route as GradientImport } from './routes/gradient'
 import { Route as ExpenseImport } from './routes/expense'
 import { Route as DiceRobImport } from './routes/dice-rob'
@@ -161,6 +162,12 @@ const HangmanRoute = HangmanImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const GradientRobRoute = GradientRobImport.update({
+  id: '/gradient-rob',
+  path: '/gradient-rob',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const GradientRoute = GradientImport.update({
   id: '/gradient',
   path: '/gradient',
@@ -254,6 +261,13 @@ declare module '@tanstack/react-router' {
       path: '/gradient'
       fullPath: '/gradient'
       preLoaderRoute: typeof GradientImport
+      parentRoute: typeof rootRoute
+    }
+    '/gradient-rob': {
+      id: '/gradient-rob'
+      path: '/gradient-rob'
+      fullPath: '/gradient-rob'
+      preLoaderRoute: typeof GradientRobImport
       parentRoute: typeof rootRoute
     }
     '/hangman': {
@@ -409,6 +423,7 @@ export interface FileRoutesByFullPath {
   '/dice-rob': typeof DiceRobRoute
   '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
+  '/gradient-rob': typeof GradientRobRoute
   '/hangman': typeof HangmanRoute
   '/hanoi': typeof HanoiRoute
   '/histogram': typeof HistogramRoute
@@ -439,6 +454,7 @@ export interface FileRoutesByTo {
   '/dice-rob': typeof DiceRobRoute
   '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
+  '/gradient-rob': typeof GradientRobRoute
   '/hangman': typeof HangmanRoute
   '/hanoi': typeof HanoiRoute
   '/histogram': typeof HistogramRoute
@@ -470,6 +486,7 @@ export interface FileRoutesById {
   '/dice-rob': typeof DiceRobRoute
   '/expense': typeof ExpenseRoute
   '/gradient': typeof GradientRoute
+  '/gradient-rob': typeof GradientRobRoute
   '/hangman': typeof HangmanRoute
   '/hanoi': typeof HanoiRoute
   '/histogram': typeof HistogramRoute
@@ -502,6 +519,7 @@ export interface FileRouteTypes {
     | '/dice-rob'
     | '/expense'
     | '/gradient'
+    | '/gradient-rob'
     | '/hangman'
     | '/hanoi'
     | '/histogram'
@@ -531,6 +549,7 @@ export interface FileRouteTypes {
     | '/dice-rob'
     | '/expense'
     | '/gradient'
+    | '/gradient-rob'
     | '/hangman'
     | '/hanoi'
     | '/histogram'
@@ -560,6 +579,7 @@ export interface FileRouteTypes {
     | '/dice-rob'
     | '/expense'
     | '/gradient'
+    | '/gradient-rob'
     | '/hangman'
     | '/hanoi'
     | '/histogram'
@@ -591,6 +611,7 @@ export interface RootRouteChildren {
   DiceRobRoute: typeof DiceRobRoute
   ExpenseRoute: typeof ExpenseRoute
   GradientRoute: typeof GradientRoute
+  GradientRobRoute: typeof GradientRobRoute
   HangmanRoute: typeof HangmanRoute
   HanoiRoute: typeof HanoiRoute
   HistogramRoute: typeof HistogramRoute
@@ -621,6 +642,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiceRobRoute: DiceRobRoute,
   ExpenseRoute: ExpenseRoute,
   GradientRoute: GradientRoute,
+  GradientRobRoute: GradientRobRoute,
   HangmanRoute: HangmanRoute,
   HanoiRoute: HanoiRoute,
   HistogramRoute: HistogramRoute,
@@ -660,6 +682,7 @@ export const routeTree = rootRoute
         "/dice-rob",
         "/expense",
         "/gradient",
+        "/gradient-rob",
         "/hangman",
         "/hanoi",
         "/histogram",
@@ -702,6 +725,9 @@ export const routeTree = rootRoute
     },
     "/gradient": {
       "filePath": "gradient.tsx"
+    },
+    "/gradient-rob": {
+      "filePath": "gradient-rob.tsx"
     },
     "/hangman": {
       "filePath": "hangman.tsx"
