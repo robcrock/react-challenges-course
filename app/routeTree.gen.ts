@@ -23,6 +23,7 @@ import { Route as SpeedImport } from './routes/speed'
 import { Route as SimonImport } from './routes/simon'
 import { Route as RockPaperScissorsRobImport } from './routes/rock-paper-scissors-rob'
 import { Route as RockPaperScissorsImport } from './routes/rock-paper-scissors'
+import { Route as QuoteRobImport } from './routes/quote-rob'
 import { Route as QuoteImport } from './routes/quote'
 import { Route as QuizImport } from './routes/quiz'
 import { Route as PasswordImport } from './routes/password'
@@ -109,6 +110,12 @@ const RockPaperScissorsRobRoute = RockPaperScissorsRobImport.update({
 const RockPaperScissorsRoute = RockPaperScissorsImport.update({
   id: '/rock-paper-scissors',
   path: '/rock-paper-scissors',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const QuoteRobRoute = QuoteRobImport.update({
+  id: '/quote-rob',
+  path: '/quote-rob',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -298,6 +305,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuoteImport
       parentRoute: typeof rootRoute
     }
+    '/quote-rob': {
+      id: '/quote-rob'
+      path: '/quote-rob'
+      fullPath: '/quote-rob'
+      preLoaderRoute: typeof QuoteRobImport
+      parentRoute: typeof rootRoute
+    }
     '/rock-paper-scissors': {
       id: '/rock-paper-scissors'
       path: '/rock-paper-scissors'
@@ -402,6 +416,7 @@ export interface FileRoutesByFullPath {
   '/password': typeof PasswordRoute
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
+  '/quote-rob': typeof QuoteRobRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/rock-paper-scissors-rob': typeof RockPaperScissorsRobRoute
   '/simon': typeof SimonRoute
@@ -431,6 +446,7 @@ export interface FileRoutesByTo {
   '/password': typeof PasswordRoute
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
+  '/quote-rob': typeof QuoteRobRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/rock-paper-scissors-rob': typeof RockPaperScissorsRobRoute
   '/simon': typeof SimonRoute
@@ -461,6 +477,7 @@ export interface FileRoutesById {
   '/password': typeof PasswordRoute
   '/quiz': typeof QuizRoute
   '/quote': typeof QuoteRoute
+  '/quote-rob': typeof QuoteRobRoute
   '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/rock-paper-scissors-rob': typeof RockPaperScissorsRobRoute
   '/simon': typeof SimonRoute
@@ -492,6 +509,7 @@ export interface FileRouteTypes {
     | '/password'
     | '/quiz'
     | '/quote'
+    | '/quote-rob'
     | '/rock-paper-scissors'
     | '/rock-paper-scissors-rob'
     | '/simon'
@@ -520,6 +538,7 @@ export interface FileRouteTypes {
     | '/password'
     | '/quiz'
     | '/quote'
+    | '/quote-rob'
     | '/rock-paper-scissors'
     | '/rock-paper-scissors-rob'
     | '/simon'
@@ -548,6 +567,7 @@ export interface FileRouteTypes {
     | '/password'
     | '/quiz'
     | '/quote'
+    | '/quote-rob'
     | '/rock-paper-scissors'
     | '/rock-paper-scissors-rob'
     | '/simon'
@@ -578,6 +598,7 @@ export interface RootRouteChildren {
   PasswordRoute: typeof PasswordRoute
   QuizRoute: typeof QuizRoute
   QuoteRoute: typeof QuoteRoute
+  QuoteRobRoute: typeof QuoteRobRoute
   RockPaperScissorsRoute: typeof RockPaperScissorsRoute
   RockPaperScissorsRobRoute: typeof RockPaperScissorsRobRoute
   SimonRoute: typeof SimonRoute
@@ -607,6 +628,7 @@ const rootRouteChildren: RootRouteChildren = {
   PasswordRoute: PasswordRoute,
   QuizRoute: QuizRoute,
   QuoteRoute: QuoteRoute,
+  QuoteRobRoute: QuoteRobRoute,
   RockPaperScissorsRoute: RockPaperScissorsRoute,
   RockPaperScissorsRobRoute: RockPaperScissorsRobRoute,
   SimonRoute: SimonRoute,
@@ -645,6 +667,7 @@ export const routeTree = rootRoute
         "/password",
         "/quiz",
         "/quote",
+        "/quote-rob",
         "/rock-paper-scissors",
         "/rock-paper-scissors-rob",
         "/simon",
@@ -700,6 +723,9 @@ export const routeTree = rootRoute
     },
     "/quote": {
       "filePath": "quote.tsx"
+    },
+    "/quote-rob": {
+      "filePath": "quote-rob.tsx"
     },
     "/rock-paper-scissors": {
       "filePath": "rock-paper-scissors.tsx"
